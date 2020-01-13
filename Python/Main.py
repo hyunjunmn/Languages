@@ -15,8 +15,8 @@ days=["Mon","Tue","Wed","Thr","Fri"]
 
 
 #mutable sequence활용법
-days.append("Sat") #sat가 추가됨
-days.reverse() #안에 들어있는 값들이 반대로 출력하게됨
-print(days)
+#days.append("Sat") #sat가 추가됨
+#days.reverse() #안에 들어있는 값들이 반대로 출력하게됨
+#print(days)
 
 
