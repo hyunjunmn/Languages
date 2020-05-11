@@ -24,15 +24,15 @@ namespace oowp_1
         {
             Random Random = new Random(); // 
 
-            if (e.Button == MouseButtons.Left) //
+            if (e.Button == MouseButtons.Left) //마우스 왼쪽 클릭 이벤트
             {
-                CMyData c = new CMyData(); //
-                c.Shape = (int)Random.Next(2); // 0  or 1  교재 p.388
-                c.Size = (int)Random.Next(50, 200); // 50-199
-                c.Point = new Point(e.X, e.Y); // 
+                CMyData c = new CMyData(); //CMData를 추가하고
+                c.Shape = (int)Random.Next(2); // 모양 지정 0,1가 랜덤으로 나온다.
+                c.Size = (int)Random.Next(50, 200); // 사이즈는 50-199 까지 랜덤으로 나온다.
+                c.Point = new Point(e.X, e.Y); // 마우스가 왼쪽에 클릭되는 위치를 저장해줌
                 c.bColor = Color.FromArgb(Random.Next(256), Random.Next(256), Random.Next(256)); //r,g,b 255 
                 c.pColor = Color.FromArgb(Random.Next(256), Random.Next(256), Random.Next(256));  // r,g,b 255 
-                ar.Add(c); // CMydata
+                ar.Add(c); // 배열에 저장
 
             }
             Invalidate(); // paint
@@ -40,10 +40,10 @@ namespace oowp_1
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            foreach (CMyData c in ar) // P.155
+            foreach (CMyData c in ar) // ar안에 CMData 추가
             {
-                SolidBrush brc = new SolidBrush(c.bColor); // brc  P.660
-                Pen p = new Pen(c.pColor); // p P.671 
+                SolidBrush brc = new SolidBrush(c.bColor); //브러쉬 지정
+                Pen p = new Pen(c.pColor); // 펜 지정 
                 if (c.Shape == 1) // 
                 {
                     e.Graphics.DrawEllipse(p, c.Point.X, c.Point.Y, c.Size, c.Size); // 
@@ -61,21 +61,24 @@ namespace oowp_1
     public class CMyData // p.210 
     {
         private Point point;//
-        private Color penCol;//
-        private Color brushCol;//
+       // private Color penCol;//
+        //private Color brushCol;//
         private int size, shape;//
 
-        public Color pColor//
+       /* public Color pColor//
         {
             get { return penCol; }  // Rvalue 
             set { penCol = value; } // Lvalue
-        }
-        public Color bColor//
+        }*/
+        public Color pColor { get; set; }
+        public Color bColor { get; set; }
+
+        /*public Color bColor//
         {
             get { return brushCol; }
             set { brushCol = value; }
-        }
-        public Point Point//
+        }*/
+        public Point Point//Property:  속성
         {
             get { return point; }
             set { point = value; }
